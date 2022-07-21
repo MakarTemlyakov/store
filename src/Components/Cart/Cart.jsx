@@ -7,6 +7,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, minusItem }) => {
     (sum, cartItem) => sum + cartItem.count * cartItem.PRICE,
     0
   );
+
   return (
     <section className="cart">
       <div className="container">

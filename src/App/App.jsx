@@ -11,9 +11,7 @@ const App = () => {
   const [option, setFilterOption] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
 
-  const setOption = (name) => {
-    setFilterOption(name);
-  };
+  const setOption = (name) => setFilterOption(name);
 
   const addToCart = (product, qty = 1) => {
     const cartItem = cartItems.find((x) => x.ID === product.ID);
@@ -39,9 +37,8 @@ const App = () => {
     ]);
   };
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId) =>
     setCartItem(cartItems.filter((x) => x.ID !== productId));
-  };
 
   React.useEffect(() => {
     productAPI.getProducts().then((data) => {
@@ -67,6 +64,7 @@ const App = () => {
         addToCart={addToCart}
         minusItem={minusItem}
       />
+      <div className="alert-add">Товар добавлен в корзину</div>
     </div>
   );
 };

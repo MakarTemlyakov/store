@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { getMinPrice } from "../../utils/getMinPrice";
+import { getSkuItems } from "../../utils/getSkuItems";
 import ListSku from "../ListSku/ListSku";
 import "./Product.css";
 
 const Product = ({ product, addToCart }) => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(-1);
+
+  const isDisabled = product.SKU != undefined && selectedProduct === -1;
+
   const addProductToCart = () => {
-    const productItem = selectedProduct !== null ? selectedProduct : product;
+    const productItem = skuProduct !== undefined ? skuProduct : product;
     addToCart(productItem);
   };
-  // Для выпадающего списка
+
   const minPrice = product.SKU && getMinPrice(product.SKU);
+  const skuItems = product.SKU && getSkuItems(product.SKU);
+  const skuProduct =
+    product.SKU &&
+    getSkuItems(product.SKU).find((item) => item.ID === selectedProduct);
+  const skuPrice = selectedProduct !== -1 && skuProduct.PRICE;
+  const price =
+    minPrice && selectedProduct == -1
+      ? `Цена от $${minPrice}`
+      : `Цена $${skuPrice ? skuPrice : product.PRICE}`;
 
   return (
     <div className="product">
@@ -20,28 +33,24 @@ const Product = ({ product, addToCart }) => {
       </div>
       {product.SKU && (
         <>
-          <h3 className="product-sku__subTitle">Характеристики:</h3>
+          <h4 className="product-sku__subTitle">Характеристики:</h4>
           <div className="product-sku__wrapper">
             <ListSku
-              listSku={product.SKU}
+              listSku={skuItems}
               setSelectedProduct={setSelectedProduct}
               selectedProduct={selectedProduct}
             />
           </div>
         </>
       )}
-      <span className="product__price">
-        Цена: ${selectedProduct ? selectedProduct.PRICE : product.PRICE}
-        {/* {minPrice ? `Цена от $${minPrice}` : `Цена $${product.PRICE}`} */}
-      </span>
+      <span className="product__price">{price}</span>
       <button
-        className="btn"
+        className={"btn"}
         type="button"
-        onClick={() => {
-          addProductToCart();
-        }}
+        disabled={isDisabled}
+        onClick={() => addProductToCart()}
       >
-        Добавить
+        Купить
       </button>
     </div>
   );

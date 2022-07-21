@@ -5,20 +5,11 @@
 
 .products {
   margin-top: 40px;
-  background-color: #ffffff;
+  flex-grow: 1;
   padding: 0px 0px 40px 0px;
 }
 
 .products-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.product-sku__wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  flex-wrap: wrap;
-  margin-top: 10px;
 }

@@ -5,31 +5,64 @@
 .item-count {
   display: inline-block;
   align-items: center;
-  display: inline-block;
-  align-items: center;
   margin: 5px 10px;
-  width: 20px;
 }
 
-.btn-plus {
+.btn.btn-plus {
   width: 20px;
   height: 19px;
-  outline: none;
-  border: 1px solid black;
-  background: #f1f1f1;
+  border-radius: 0px;
   cursor: pointer;
+  margin-bottom: 0px;
 }
 
-.btn-minus {
+.btn.btn-plus::before {
+  overflow: hidden;
+  content: "+";
+  display: block;
+  line-height: 16px;
+}
+
+.btn.btn-minus {
   width: 20px;
   height: 19px;
-  outline: none;
-  border: none;
-  border: 1px solid black;
-  background: #f1f1f1;
+  position: relative;
+  border-radius: 0px;
   cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.btn.btn-minus::before {
+  overflow: hidden;
+  content: "-";
+  display: block;
+  top: 50%;
+  position: absolute;
+  left: 5px;
+  margin-top: -11px;
+}
+
+.btn.btn-minus:hover,
+.btn.btn-plus:hover {
+  background: #ffffff;
+  color: rgb(234, 26, 80);
 }
 
 .body-col-remove:hover {
   cursor: pointer;
+}
+
+.btn.btn-cart-item-remove {
+  border-radius: 2px;
+  font-size: 14px;
+  width: 100px;
+  height: 40px;
+  background: rgb(234, 26, 80);
+  color: #ffffff;
+  margin-bottom: 0px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
 }

@@ -7,6 +7,7 @@ const Catalog = ({ products, addToCart }) => {
   if (!products) {
     return <div>Каталог пустой</div>;
   }
+  console.log({ products: products });
   return (
     <section className="products">
       <div className="container">
