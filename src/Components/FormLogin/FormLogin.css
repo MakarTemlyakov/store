@@ -1,0 +1,39 @@
+.form {
+  width: 500px;
+  height: 400px;
+  background: #ffffff;
+}
+
+.form-group__element {
+  margin-bottom: 20px;
+}
+
+.form-group__element input[type='text'],
+.form-group__element input[type='password'] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 2px;
+  outline: none;
+  margin-top: 5px;
+  border: none;
+  background: #e3e3e3;
+}
+
+.form-group__element input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.form-group {
+  width: 230px;
+  min-height: 100%;
+  font-size: 18px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-login .button-submit {
+  width: 100%;
+}

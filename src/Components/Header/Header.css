@@ -4,7 +4,7 @@
   height: 75px;
   background-color: #fffdfd;
   position: sticky;
-  z-index: 999999;
+  z-index: 9999;
 }
 
 .header-wrapper {
@@ -28,7 +28,7 @@
 }
 
 .filter:after {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   margin-right: 10px;
@@ -91,7 +91,7 @@
 }
 
 .display_menu:after {
-  content: "";
+  content: '';
   border-width: 6px 6px 0 6px;
   border-color: black transparent;
   border-style: solid;

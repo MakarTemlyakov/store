@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
+import { CartContext } from "../../Context/cartContext";
+import { addProductToCart, initState, reducer } from "../../store/store";
 import "./Cart.css";
 import CartItem from "./CartItem/CartItem";
 
-const Cart = ({ cartItems, removeFromCart, addToCart, minusItem }) => {
-  const totalPriceCart = cartItems.reduce(
+const Cart = ({ removeFromCart, addToCart, minusItem }) => {
+  const [state, dispatch] = useReducer(reducer, initState);
+
+  const totalPriceCart = state.cartItems.reduce(
     (sum, cartItem) => sum + cartItem.count * cartItem.PRICE,
     0
   );
@@ -11,7 +15,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, minusItem }) => {
   return (
     <section className="cart">
       <div className="container">
-        {cartItems.length > 0 ? (
+        {state.cartItems.length > 0 ? (
           <>
             <h2 className="title">Корзина</h2>
             <div className="cart-wrapper">
@@ -27,13 +31,15 @@ const Cart = ({ cartItems, removeFromCart, addToCart, minusItem }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((cartItem, index) => (
+                  {state.cartItems.map((cartItem, index) => (
                     <CartItem
                       key={index}
-                      addToCart={addToCart}
+                      // addToCart={addToCart}
+
                       removeFromCart={removeFromCart}
                       minusItem={minusItem}
                       cartItem={cartItem}
+                      onClick={dispatch(addProductToCart(cartItem))}
                     />
                   ))}
                   <tr>

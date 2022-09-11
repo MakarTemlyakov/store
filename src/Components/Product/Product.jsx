@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { getMinPrice } from "../../utils/getMinPrice";
-import { getSkuItems } from "../../utils/getSkuItems";
-import ListSku from "../ListSku/ListSku";
-import "./Product.css";
+import React, { useReducer, useState } from 'react';
+import { addProductToCart, initState, reducer } from '../../store/store';
+import { getMinPrice } from '../../utils/getMinPrice';
+import { getSkuItems } from '../../utils/getSkuItems';
+import ListSku from '../ListSku/ListSku';
+import './Product.css';
 
 const Product = ({ product, addToCart }) => {
   const [selectedProduct, setSelectedProduct] = useState(-1);
-
+  const [state, dispatch] = useReducer(reducer, initState);
   const isDisabled = product.SKU != undefined && selectedProduct === -1;
 
   const addProductToCart = () => {
@@ -17,8 +18,7 @@ const Product = ({ product, addToCart }) => {
   const minPrice = product.SKU && getMinPrice(product.SKU);
   const skuItems = product.SKU && getSkuItems(product.SKU);
   const skuProduct =
-    product.SKU &&
-    getSkuItems(product.SKU).find((item) => item.ID === selectedProduct);
+    product.SKU && getSkuItems(product.SKU).find((item) => item.ID === selectedProduct);
   const skuPrice = selectedProduct !== -1 && skuProduct.PRICE;
   const price =
     minPrice && selectedProduct == -1
@@ -44,12 +44,7 @@ const Product = ({ product, addToCart }) => {
         </>
       )}
       <span className="product__price">{price}</span>
-      <button
-        className={"btn"}
-        type="button"
-        disabled={isDisabled}
-        onClick={() => addProductToCart()}
-      >
+      <button className={'btn'} type="button" disabled={isDisabled} onClick={addProductToCart}>
         Купить
       </button>
     </div>
